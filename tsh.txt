@@ -1,0 +1,73 @@
+tsh> grep int tsh.c
+    int argc = 0;               /* 인자의 개수 */
+    int fd[2];                  // #1
+    int fd_p[2];                // #5
+                printf("pipe error");
+int main(void)
+    int len;                    /* 입력된 명령어의 길이 */
+    int background;             /* 백그라운드 실행 유무 */
+            printf("[%d] + done\n", pid);
+        printf("tsh> "); fflush(stdout);
+tsh> grep "if.*NULL" tsh.c &
+tsh>         if (q == NULL || *q == ' ' || *q == '\t') {  
+        if (p != NULL) {
+
+[2914] + done
+tsh> ps
+  PID TTY          TIME CMD
+ 1981 pts/0    00:00:00 bash
+ 2912 pts/0    00:00:00 tsh
+ 2915 pts/0    00:00:00 ps
+tsh> grep "int " < tsh.c
+    int argc = 0;               /* 인자의 개수 */
+    int fd[2];                  // #1
+    int fd_p[2];                // #5
+int main(void)
+    int len;                    /* 입력된 명령어의 길이 */
+    int background;             /* 백그라운드 실행 유무 */
+tsh> ls -l
+total 32
+-rw-rw-r-- 1 ryu ryu   407  3월 22 13:52 Makefile
+-rwxrwxr-x 1 ryu ryu 13224  3월 30 21:15 tsh
+-rw-rw-r-- 1 ryu ryu 11268  3월 30 21:15 tsh.c
+tsh> ls -l > delme
+tsh> cat delme
+total 32
+-rw-rw-r-- 1 ryu ryu     0  3월 30 21:16 delme
+-rw-rw-r-- 1 ryu ryu   407  3월 22 13:52 Makefile
+-rwxrwxr-x 1 ryu ryu 13224  3월 30 21:15 tsh
+-rw-rw-r-- 1 ryu ryu 11268  3월 30 21:15 tsh.c
+tsh> sort < delme > delme2
+tsh> cat delme2
+-rw-rw-r-- 1 ryu ryu     0  3월 30 21:16 delme
+-rw-rw-r-- 1 ryu ryu 11268  3월 30 21:15 tsh.c
+-rw-rw-r-- 1 ryu ryu   407  3월 22 13:52 Makefile
+-rwxrwxr-x 1 ryu ryu 13224  3월 30 21:15 tsh
+total 32
+tsh> ps -A | grep -i system
+    1 ?        00:00:07 systemd
+  281 ?        00:00:00 systemd-journal
+  297 ?        00:00:00 systemd-udevd
+  643 ?        00:00:00 systemd-resolve
+  754 ?        00:00:00 systemd-logind
+ 1180 ?        00:00:00 systemd
+ 1402 ?        00:00:00 systemd
+tsh> ps -A | grep -i system | awk '{print $1,$4}'
+1 systemd
+281 systemd-journal
+297 systemd-udevd
+643 systemd-resolve
+754 systemd-logind
+1180 systemd
+1402 systemd
+tsh> cat tsh.c | head -6 | tail -5 | head -1
+ * Copyright(c) 2023 All rights reserved by Heekuck Oh.
+tsh> sort < tsh.c | grep "int " | awk '{print $1,$2}' > delme3
+tsh> cat delme3
+int argc
+int background;
+int fd[2];
+int fd_p[2];
+int len;
+int main(void)
+tsh> 
